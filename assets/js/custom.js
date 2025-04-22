@@ -193,29 +193,3 @@ function scrollTopPercentage() {
   $("#scroll-percentage").on("click", scrollToTop);
 }
 scrollTopPercentage();
-
-const text =
-  "🎉 Early Bird Offer! Book Your Stand 30 Days in Advance & Get 20% OFF 🎉";
-const typewriter = document.getElementById("typewriter-text");
-let index = 0;
-let isDeleting = false;
-
-function loopTypewriter() {
-  let displayText = text.substring(0, index);
-  typewriter.innerHTML = displayText;
-
-  if (!isDeleting && index < text.length) {
-    index++;
-    setTimeout(loopTypewriter, 50);
-  } else if (isDeleting && index > 0) {
-    index--;
-    setTimeout(loopTypewriter, 30);
-  } else {
-    isDeleting = !isDeleting;
-    setTimeout(loopTypewriter, isDeleting ? 1000 : 500); // pause between actions
-  }
-}
-
-window.onload = function () {
-  setTimeout(loopTypewriter, 500); // initial delay
-};
