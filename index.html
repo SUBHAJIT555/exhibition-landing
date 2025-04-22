@@ -65,6 +65,16 @@
     </div>
   </div>
   <!-- preloader end -->
+  <div class="early-bird-banner">
+    <p><span id="typewriter-text"></span></p>
+    <!-- <p class="animated-text">🎉 Early Bird Offer! Book Your Stand 30 Days in Advance & <strong >Get 20% OFF</strong> 🎉</p> -->
+    <div style="
+    position: absolute;
+    top: 5px;
+    right: 150px;
+    z-index: 1001;"><a href="https://wa.me/971554684988" target="_blank" class="cta-btn-banner pulse-btn" >Claim Offer</a></div>
+  </div>
+  
   <!-- header -->
   <header id="stickyHeader">
     <div class="container">
@@ -284,7 +294,7 @@
         <div class="col-lg-4 col-md-6 portfolio-item mb-4">
           <div class="portfolio-box">
             <figure>
-              <img src="assets/img/portfolio/01.png" alt="Exhibition Stand 1">
+              <img src="assets/img/portfolio/01.webp" alt="Exhibition Stand 1">
             </figure>
             <div class="portfolio-info">
               <h3>Innovative Exhibition Stands</h3>
@@ -295,7 +305,7 @@
         <div class="col-lg-4 col-md-6 portfolio-item mb-4">
           <div class="portfolio-box">
             <figure>
-              <img src="assets/img/portfolio/02.png" alt="Exhibition Stand 2">
+              <img src="assets/img/portfolio/02.webp" alt="Exhibition Stand 2">
             </figure>
             <div class="portfolio-info">
               <h3>Immersive & Experiential Exhibition Stands</h3>
@@ -306,7 +316,7 @@
         <div class="col-lg-4 col-md-6 portfolio-item mb-4">
           <div class="portfolio-box">
             <figure>
-              <img src="assets/img/portfolio/03.png" alt="Exhibition Stand 3">
+              <img src="assets/img/portfolio/03.webp" alt="Exhibition Stand 3">
             </figure>
             <div class="portfolio-info">
               <h3>Our Stunning Exhibition Stand Creations</h3>
@@ -318,7 +328,7 @@
         <div class="col-lg-4 col-md-6 portfolio-item hidden mb-4">
           <div class="portfolio-box">
             <figure>
-              <img src="assets/img/portfolio/04.png" alt="Exhibition Stand 4">
+              <img src="assets/img/portfolio/04.webp" alt="Exhibition Stand 4">
             </figure>
             <div class="portfolio-info">
               <h3>Elegant Ramadan-Themed Displays</h3>
@@ -329,7 +339,7 @@
         <div class="col-lg-4 col-md-6 portfolio-item hidden mb-4">
           <div class="portfolio-box">
             <figure>
-              <img src="assets/img/portfolio/05.png" alt="Exhibition Stand 5">
+              <img src="assets/img/portfolio/05.webp" alt="Exhibition Stand 5">
             </figure>
             <div class="portfolio-info">
               <h3>Futuristic Exhibition Booth Designs</h3>
@@ -340,7 +350,7 @@
         <div class="col-lg-4 col-md-6 portfolio-item hidden mb-4">
           <div class="portfolio-box">
             <figure>
-              <img src="assets/img/portfolio/06.png" alt="Exhibition Stand 6">
+              <img src="assets/img/portfolio/06.webp" alt="Exhibition Stand 6">
             </figure>
             <div class="portfolio-info">
               <h3> Transforming Spaces, Elevating Brands</h3>
@@ -816,6 +826,21 @@
       <li><img src="assets/img/shaps-6.png" alt="img"></li>
     </ul>
   </section>
+
+<!-- Early Bird Modal -->
+<div id="earlyBirdModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <!-- <img src="your-early-bird-image.jpg" alt="Early Bird Discount" class="modal-image" /> -->
+    <h2>🎉 Early Bird Offer – Save 20%</h2>
+    <p>Book your exhibition stand <strong>30 days in advance</strong> and get an exclusive <strong>20% OFF</strong>!</p>
+    <a href="#quoteForm" id="cta-modal-btn" class="cta-btn">Claim Your Offer Now</a>
+   
+  </div>
+</div>
+
+
+
   <footer class="gap no-bottom" style="background-image: url(assets/img/line-img.png);">
     <div class="container ">
       <div class="footer-try">
@@ -964,4 +989,46 @@
     }
   });
   </script>
+<!-- modal -->
+<script>
+  window.onscroll = function () {
+    let scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    let triggerHeight = 1000; // Adjust this value to set the scroll height for triggering the modal
+
+    if (scrollPosition > triggerHeight) {
+      document.getElementById("earlyBirdModal").style.display = "block";
+      window.onscroll = null; // Remove the scroll event listener after showing the modal
+    }
+  };
+
+  document.querySelector(".close").onclick = function () {
+    document.getElementById("earlyBirdModal").style.display = "none";
+  };
+
+  document.getElementById('cta-modal-btn').onclick = function() {
+    document.getElementById("earlyBirdModal").style.display = "none";
+  };
+</script>
+
+<script>
+  document.getElementById('cta-modal-btn').addEventListener('click', function(event) {
+  event.preventDefault();
+  const target = document.querySelector('#quoteForm');
+  const offset = 50; // Adjust this value for the desired offset
+  const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({
+    top: targetPosition,
+    behavior: 'smooth'
+  });
+  // Scroll to the form and add focus with animation
+  target.querySelector('input').focus(); // Focus on the first input field
+
+  // Add animation to highlight the form
+  target.classList.add('highlight-form');
+  setTimeout(() => {
+    target.classList.remove('highlight-form');
+  }, 2000); // Remove the highlight after 2 seconds
+
+  });
+</script>
 </body>
