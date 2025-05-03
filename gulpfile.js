@@ -23,28 +23,16 @@ gulp.task("clean", () => deleteAsync([paths.dist]));
 // Process assets and generate manifest
 gulp.task("rev-assets", () => {
   return gulp
-    .src(
-      [
-        paths.css,
-        paths.js,
-        "src/assets/**/*.{png,jpg,jpeg,gif,svg,webp}", // Include images for revision
-      ],
-      { base: "src" }
-    )
+    .src([paths.css, paths.js, paths.images], {
+      base: "src",
+      encoding: false, // Important for binary files like images
+    })
     .pipe(gulpIf(/\.css$/, cleanCSS()))
     .pipe(gulpIf(/\.js$/, uglify()))
     .pipe(rev())
     .pipe(gulp.dest(paths.dist))
     .pipe(rev.manifest("rev-manifest.json"))
     .pipe(gulp.dest(paths.dist));
-});
-
-// Optimize images
-gulp.task("optimize-images", () => {
-  return gulp
-    .src("src/assets/img/**/*.{jpg,jpeg,png,svg,webp}")
-    .pipe(imagemin())
-    .pipe(gulp.dest("dist/assets/img"));
 });
 
 // Process HTML files with proper manifest handling
@@ -73,7 +61,7 @@ gulp.task("html", () => {
     .pipe(gulp.dest(paths.dist));
 });
 
-// Copy other assets (images, fonts, etc.)
+// Copy other assets ( fonts, etc.)
 gulp.task("copy-assets", () => {
   return gulp
     .src(
