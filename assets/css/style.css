@@ -2391,3 +2391,81 @@ footer a,
     opacity: 1;
   }
 }
+
+
+
+
+.bento-bordered {
+  
+  transition: border-color 0.3s ease;
+}
+.bento-bordered:hover {
+  border-color: #bbb;
+}
+.bento-card img {
+  object-fit: cover;
+}
+.text-pink {
+  color: #d63384;
+}
+.eventname{
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.404);
+}
+.offer-blink {
+  animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+
+.modal-content {
+  /* background: rgba(255, 255, 255, 0.15); */
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+.modal-title {
+  color: white;
+}
+.modal-body p{
+  color: white;
+}
+.modal-header button{
+  background-color: #fff;
+  border-radius: 50%;
+  
+}
+
+.modal.fade .modal-dialog {
+  transform: scale(0.95);
+  transition: transform 0.3s ease-in-out;
+}
+.modal.fade.show .modal-dialog {
+  transform: scale(1);
+}
+
+
+
+
+.event-col-bg {
+  background-image: url('https://images.pexels.com/photos/31878099/pexels-photo-31878099/free-photo-of-charming-hilltop-white-house-with-palm-trees.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+}
+
+/* Optional: make inner card semi-transparent */
+.bg-opacity {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+}
+
