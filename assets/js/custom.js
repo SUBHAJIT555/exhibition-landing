@@ -335,34 +335,26 @@ window.addEventListener("click", function (e) {
 //   });
 // });
 
-// document.querySelectorAll(".cta-btn").forEach((button) => {
-//   button.addEventListener("click", function (event) {
-//     event.preventDefault();
+document.querySelectorAll(".cta-btn").forEach((button) => {
+  button.addEventListener("click", function (event) {
+    event.preventDefault();
 
-//     // 📍 Scroll to quote form
-//     const target = document.querySelector("#quoteForm");
-//     const offset = 50;
-//     const targetPosition =
-//       target.getBoundingClientRect().top + window.pageYOffset - offset;
-//     window.scrollTo({
-//       top: targetPosition,
-//       behavior: "smooth",
-//     });
+    // 📍 Scroll to quote form
+    const target = document.querySelector("#quoteForm");
+    const offset = 50;
+    const targetPosition =
+      target.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
 
-//     // 🧠 Focus and highlight
-//     const firstInput = target.querySelector("input");
-//     if (firstInput) firstInput.focus();
-//     target.classList.add("highlight-form");
-//     setTimeout(() => {
-//       target.classList.remove("highlight-form");
-//     }, 2000);
-
-//     // ✅ Close the modal if .cta-btn is inside a modal
-//     const modal = this.closest(".modal");
-//     if (modal) {
-//       modal.style.display = "none";
-//       document.body.style.overflow = "auto";
-//       document.documentElement.style.overflow = "auto";
-//     }
-//   });
-// });
+    // 🧠 Focus and highlight
+    const firstInput = target.querySelector("input");
+    if (firstInput) firstInput.focus();
+    target.classList.add("highlight-form");
+    setTimeout(() => {
+      target.classList.remove("highlight-form");
+    }, 2000);
+  });
+});
