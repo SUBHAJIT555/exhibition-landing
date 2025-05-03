@@ -258,31 +258,111 @@ document.querySelectorAll(".open-event-modal").forEach((btn) => {
     const modalId = this.getAttribute("data-target");
     const modalEl = document.getElementById(modalId);
     if (modalEl) {
-      modalEl.style.display = "block";
-      document.body.classList.add("no-scroll"); // Optional: prevent scroll
+      modalEl.classList.remove("hide");
+      modalEl.classList.add("show");
+      modalEl.style.display = "flex"; // Ensure visible for transition
+      document.documentElement.style.overflow = "hidden";
     }
   });
 });
 
-// Close modal (any modal with .custom-modal and .btn-close or #cta-modal-btn)
+// Handle close with animation
+function closeModal(modal) {
+  modal.classList.remove("show");
+  modal.classList.add("hide");
+
+  setTimeout(() => {
+    modal.style.display = "none";
+    modal.classList.remove("hide");
+    document.documentElement.style.overflow = "auto";
+  }, 400); // Match CSS transition duration
+}
+
+// Close on close buttons or CTA
 document
-  .querySelectorAll(".custom-modal .btn-close, .cta-modal-btn")
+  .querySelectorAll(".custom-modal .btn-close, .cta-btn")
   .forEach((btn) => {
     btn.addEventListener("click", function () {
-      const modal = this.closest(".custom-modal");
-      if (modal) {
-        modal.style.display = "none";
-        document.body.classList.remove("no-scroll");
-      }
+      const modal = this.closest(".modal");
+      if (modal) closeModal(modal);
     });
   });
 
-// Optional: Close on outside click
+// Close on outside click
 window.addEventListener("click", function (e) {
   document.querySelectorAll(".custom-modal").forEach((modal) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-      document.body.classList.remove("no-scroll");
-    }
+    if (e.target === modal) closeModal(modal);
   });
 });
+
+// document.querySelectorAll(".open-event-modal").forEach((btn) => {
+//   btn.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     const modalId = this.getAttribute("data-target");
+//     const modalEl = document.getElementById(modalId);
+//     if (modalEl) {
+//       modalEl.style.display = "block";
+
+//       document.documentElement.style.overflow = "hidden"; // Optional: prevent scroll
+//     }
+//   });
+// });
+
+// // Close modal (any modal with .custom-modal and .btn-close or #cta-modal-btn)
+// document
+//   .querySelectorAll(".custom-modal .btn-close, .cta-btn")
+//   .forEach((btn) => {
+//     btn.addEventListener("click", function () {
+//       const modal = this.closest(".custom-modal");
+//       if (modal) {
+//         modal.style.display = "none";
+//         // document.body.classList.remove("no-scroll");
+
+//         document.documentElement.style.overflow = "auto"; // Optional: prevent scroll
+//       }
+//     });
+//   });
+
+// // Optional: Close on outside click
+// window.addEventListener("click", function (e) {
+//   document.querySelectorAll(".custom-modal").forEach((modal) => {
+//     if (e.target === modal) {
+//       modal.style.display = "none";
+//       // document.body.classList.remove("no-scroll");
+
+//       document.documentElement.style.overflow = "auto"; // Optional: prevent scroll
+//     }
+//   });
+// });
+
+// document.querySelectorAll(".cta-btn").forEach((button) => {
+//   button.addEventListener("click", function (event) {
+//     event.preventDefault();
+
+//     // 📍 Scroll to quote form
+//     const target = document.querySelector("#quoteForm");
+//     const offset = 50;
+//     const targetPosition =
+//       target.getBoundingClientRect().top + window.pageYOffset - offset;
+//     window.scrollTo({
+//       top: targetPosition,
+//       behavior: "smooth",
+//     });
+
+//     // 🧠 Focus and highlight
+//     const firstInput = target.querySelector("input");
+//     if (firstInput) firstInput.focus();
+//     target.classList.add("highlight-form");
+//     setTimeout(() => {
+//       target.classList.remove("highlight-form");
+//     }, 2000);
+
+//     // ✅ Close the modal if .cta-btn is inside a modal
+//     const modal = this.closest(".modal");
+//     if (modal) {
+//       modal.style.display = "none";
+//       document.body.style.overflow = "auto";
+//       document.documentElement.style.overflow = "auto";
+//     }
+//   });
+// });
