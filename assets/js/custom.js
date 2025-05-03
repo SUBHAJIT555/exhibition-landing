@@ -95,62 +95,120 @@ $(window).on("load", function () {
 
 /* heading hover  */
 
-(function ($) {
-  function title_animation() {
-    var tg_var = jQuery(".sec-title-animation");
-    if (!tg_var.length) {
-      return;
+// (function ($) {
+//   function title_animation() {
+//     var tg_var = jQuery(".sec-title-animation");
+//     if (!tg_var.length) {
+//       return;
+//     }
+//     const quotes = document.querySelectorAll(
+//       ".sec-title-animation .title-animation"
+//     );
+
+//     quotes.forEach((quote) => {
+//       //Reset if needed
+//       if (quote.animation) {
+//         quote.animation.progress(1).kill();
+//         quote.split.revert();
+//       }
+
+//       var getclass = quote.closest(".sec-title-animation").className;
+//       var animation = getclass.split("animation-");
+//       if (animation[1] == "style4") return;
+
+//       quote.split = new SplitText(quote, {
+//         type: "lines,words,chars",
+//         linesClass: "split-line",
+//       });
+//       gsap.set(quote, {
+//         perspective: 400,
+//       });
+
+//       if (animation[1] == "style2") {
+//         gsap.set(quote.split.chars, {
+//           opacity: 0,
+//           x: "50",
+//         });
+//       }
+//       quote.animation = gsap.to(quote.split.chars, {
+//         scrollTrigger: {
+//           trigger: quote,
+//           start: "top 90%",
+//         },
+//         x: "0",
+//         y: "0",
+//         rotateX: "0",
+//         opacity: 1,
+//         duration: 1,
+//         ease: Back.easeOut,
+//         stagger: 0.02,
+//       });
+//     });
+//   }
+//   ScrollTrigger.addEventListener("refresh", title_animation);
+
+//   $(window).on("load", function () {
+//     title_animation();
+//   });
+// })(window.jQuery);
+
+function titleAnimation() {
+  const sections = document.querySelectorAll(".sec-title-animation");
+  if (!sections.length) return;
+
+  const quotes = document.querySelectorAll(
+    ".sec-title-animation .title-animation"
+  );
+
+  console.log("quotes", quotes);
+
+  quotes.forEach((quote) => {
+    // Reset if needed
+    if (quote.animation) {
+      quote.animation.progress(1).kill();
+      if (quote.split) quote.split.revert();
     }
-    const quotes = document.querySelectorAll(
-      ".sec-title-animation .title-animation"
-    );
 
-    quotes.forEach((quote) => {
-      //Reset if needed
-      if (quote.animation) {
-        quote.animation.progress(1).kill();
-        quote.split.revert();
-      }
+    const parentClass = quote.closest(".sec-title-animation").className;
+    const animationType = parentClass.split("animation-")[1];
 
-      var getclass = quote.closest(".sec-title-animation").className;
-      var animation = getclass.split("animation-");
-      if (animation[1] == "style4") return;
+    if (animationType === "style4") return;
 
-      quote.split = new SplitText(quote, {
-        type: "lines,words,chars",
-        linesClass: "split-line",
-      });
-      gsap.set(quote, {
-        perspective: 400,
-      });
-
-      if (animation[1] == "style2") {
-        gsap.set(quote.split.chars, {
-          opacity: 0,
-          x: "50",
-        });
-      }
-      quote.animation = gsap.to(quote.split.chars, {
-        scrollTrigger: {
-          trigger: quote,
-          start: "top 90%",
-        },
-        x: "0",
-        y: "0",
-        rotateX: "0",
-        opacity: 1,
-        duration: 1,
-        ease: Back.easeOut,
-        stagger: 0.02,
-      });
+    quote.split = new SplitText(quote, {
+      type: "lines,words,chars",
+      linesClass: "split-line",
     });
-  }
-  ScrollTrigger.addEventListener("refresh", title_animation);
 
-  $(window).on("load", function () {
-    title_animation();
+    gsap.set(quote, { perspective: 400 });
+
+    if (animationType === "style2") {
+      gsap.set(quote.split.chars, {
+        opacity: 0,
+        x: "50",
+      });
+    }
+
+    quote.animation = gsap.to(quote.split.chars, {
+      scrollTrigger: {
+        trigger: quote,
+        start: "top 90%",
+      },
+      x: "0",
+      y: "0",
+      rotateX: "0",
+      opacity: 1,
+      duration: 1,
+      ease: "back.out(1.7)", // Replacing Back.easeOut with modern GSAP ease
+      stagger: 0.02,
+    });
   });
-})(window.jQuery);
+}
+
+// Re-initialize on ScrollTrigger refresh
+ScrollTrigger.addEventListener("refresh", titleAnimation);
+
+// Trigger on page load (equivalent to jQuery window onload)
+window.addEventListener("load", titleAnimation);
 
 function scrollTopPercentage() {
   const scrollPercentage = () => {
