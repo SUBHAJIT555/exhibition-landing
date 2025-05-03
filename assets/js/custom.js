@@ -251,3 +251,38 @@ function scrollTopPercentage() {
   $("#scroll-percentage").on("click", scrollToTop);
 }
 scrollTopPercentage();
+
+document.querySelectorAll(".open-event-modal").forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    const modalId = this.getAttribute("data-target");
+    const modalEl = document.getElementById(modalId);
+    if (modalEl) {
+      modalEl.style.display = "block";
+      document.body.classList.add("no-scroll"); // Optional: prevent scroll
+    }
+  });
+});
+
+// Close modal (any modal with .custom-modal and .btn-close or #cta-modal-btn)
+document
+  .querySelectorAll(".custom-modal .btn-close, .cta-modal-btn")
+  .forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const modal = this.closest(".custom-modal");
+      if (modal) {
+        modal.style.display = "none";
+        document.body.classList.remove("no-scroll");
+      }
+    });
+  });
+
+// Optional: Close on outside click
+window.addEventListener("click", function (e) {
+  document.querySelectorAll(".custom-modal").forEach((modal) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+      document.body.classList.remove("no-scroll");
+    }
+  });
+});
