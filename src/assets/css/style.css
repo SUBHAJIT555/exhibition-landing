@@ -475,7 +475,7 @@ header {
 
 .btn:hover > span > span {
   animation: MoveUpInitial 0.2s forwards, MoveUpEnd 0.2s forwards 0.2s;
-  color: #fff;
+  color: #000;
 }
 
 @keyframes MoveUpInitial {
@@ -954,11 +954,7 @@ footer {
   top: 0;
   left: 0;
   position: absolute;
-  background: linear-gradient(
-    270deg,
-    rgba(66, 201, 250, 0) 0%,
-    #fff6f5 100%
-  );
+  background: linear-gradient(270deg, rgba(66, 201, 250, 0) 0%, #fff6f5 100%);
   z-index: 1111;
 }
 .marquee:after {
@@ -968,11 +964,7 @@ footer {
   top: 0;
   right: 0;
   position: absolute;
-  background: linear-gradient(
-    90deg,
-    rgba(66, 201, 250, 0) 0%,
-    #fff6f5 100%
-  );
+  background: linear-gradient(90deg, rgba(66, 201, 250, 0) 0%, #fff6f5 100%);
 }
 .marquee img {
   width: 250px !important;
