@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mail->Port       = 465;
 
         $mail->setFrom('admin@baharnani.com', 'Google Ads Leads Exibition');
-        $mail->addAddress('gaurav@baharnani.com', 'Gaurav');
+        $mail->addAddress('aditya@codecobble.com', 'Gaurav');
 
         $mail->isHTML(true);
         $mail->Subject = 'Google Ads Leads Exibition';
